@@ -1,10 +1,11 @@
-import { CSSProperties, useState } from 'react';
+import { useState } from 'react';
 import { Article } from '../article';
 import { ArticleParamsForm } from '../article-params-form';
 import { defaultArticleState } from 'src/constants/articleProps';
 import type { ArticleStateType } from 'src/constants/articleProps';
+import type { CSSProperties } from 'react';
 
-import '../../styles/index.scss';
+import 'src/styles/index.scss';
 import styles from '../../styles/index.module.scss';
 
 export const App = () => {
