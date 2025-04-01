@@ -9,23 +9,24 @@ import 'src/styles/index.scss';
 import styles from '../../styles/index.module.scss';
 
 export const App = () => {
-  const [currentStyles, setCurrentStyles] = useState<ArticleStateType>(defaultArticleState);
+	const [currentStyles, setCurrentStyles] =
+		useState<ArticleStateType>(defaultArticleState);
 
-  const styleVariables = {
-    '--font-family': currentStyles.fontFamilyOption.value,
-    '--font-size': currentStyles.fontSizeOption.value,
-    '--font-color': currentStyles.fontColor.value,
-    '--container-width': currentStyles.contentWidth.value,
-    '--bg-color': currentStyles.backgroundColor.value,
-  } as CSSProperties;
+	const styleVariables = {
+		'--font-family': currentStyles.fontFamilyOption.value,
+		'--font-size': currentStyles.fontSizeOption.value,
+		'--font-color': currentStyles.fontColor.value,
+		'--container-width': currentStyles.contentWidth.value,
+		'--bg-color': currentStyles.backgroundColor.value,
+	} as CSSProperties;
 
-  return (
-    <main className={styles.main} style={styleVariables}>
-      <ArticleParamsForm 
-        currentStyles={currentStyles}
-        onApply={(newStyles) => setCurrentStyles(newStyles)}
-      />
-      <Article />
-    </main>
-  );
+	return (
+		<main className={styles.main} style={styleVariables}>
+			<ArticleParamsForm
+				currentStyles={currentStyles}
+				onApply={(newStyles) => setCurrentStyles(newStyles)}
+			/>
+			<Article />
+		</main>
+	);
 };
