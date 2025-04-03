@@ -13,6 +13,7 @@ import {
 	fontColors,
 	backgroundColors,
 	contentWidthArr,
+	defaultArticleState,
 } from 'src/constants/articleProps';
 import type { ArticleStateType } from 'src/constants/articleProps';
 
@@ -35,6 +36,21 @@ export const ArticleParamsForm = ({
 		setFormState(currentStyles);
 	}, [currentStyles]);
 
+	useEffect(() => {
+		if (!isOpen) return;
+		const handleClickOutside = (event: MouseEvent) => {
+			if (formRef.current && !formRef.current.contains(event.target as Node)) {
+				setIsOpen(false);
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [isOpen]);
+
 	const handleApply = (e: React.FormEvent) => {
 		e.preventDefault();
 		onApply(formState);
@@ -42,8 +58,8 @@ export const ArticleParamsForm = ({
 	};
 
 	const handleReset = () => {
-		setFormState(currentStyles);
-		onApply(currentStyles);
+		setFormState(defaultArticleState);
+		onApply(defaultArticleState);
 	};
 
 	const toggleSidebar = () => setIsOpen(!isOpen);
@@ -58,7 +74,7 @@ export const ArticleParamsForm = ({
 					className={styles.form}
 					onSubmit={handleApply}
 					onReset={handleReset}>
-					<Text as='h2' size={31} weight={800}>
+					<Text as='h2' size={31} weight={800} uppercase>
 						Задайте параметры
 					</Text>
 
